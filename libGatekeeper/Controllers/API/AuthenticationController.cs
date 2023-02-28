@@ -14,7 +14,7 @@ public class AuthenticationController : Controller
 
     [HttpPost]
     [Route("api/v1/auth/login")]
-    public async Task<IActionResult> Login([FromBody] AuthenticationServiceTypes.Login.LoginRequest request)
+    public async Task<ActionResult<AuthenticationServiceTypes.Login.LoginResponse>> Login([FromBody] AuthenticationServiceTypes.Login.LoginRequest request)
     {
         var response = await _authenticationService.Login(request);
 
@@ -28,7 +28,7 @@ public class AuthenticationController : Controller
 
     [HttpPost]
     [Route("api/v1/auth/logout")]
-    public async Task<IActionResult> Logout()
+    public async Task<ActionResult<AuthenticationServiceTypes.Logout.LogoutResponse>> Logout()
     {
         var response = await _authenticationService.Logout();
 
@@ -42,7 +42,7 @@ public class AuthenticationController : Controller
 
     [HttpPost]
     [Route("api/v1/auth/register")]
-    public async Task<IActionResult> Register([FromBody] AuthenticationServiceTypes.Register.RegisterRequest request)
+    public async Task<ActionResult<AuthenticationServiceTypes.Register.RegisterResponse>> Register([FromBody] AuthenticationServiceTypes.Register.RegisterRequest request)
     {
         var response = await _authenticationService.Register(request);
 
