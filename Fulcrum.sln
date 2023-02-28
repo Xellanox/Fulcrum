@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FulcrumServer", "FulcrumServer\FulcrumServer.csproj", "{498D2DA3-3628-4BD9-B4C7-B83AE7A2DCD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libGatekeeper", "libGatekeeper\libGatekeeper.csproj", "{0C34018B-2370-4092-9788-DC7EAAD99F5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libFulcrum", "libFulcrum\libFulcrum.csproj", "{29634D3A-EBC2-469A-BEAB-D6AFDAAFCFF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{498D2DA3-3628-4BD9-B4C7-B83AE7A2DCD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{498D2DA3-3628-4BD9-B4C7-B83AE7A2DCD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{498D2DA3-3628-4BD9-B4C7-B83AE7A2DCD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{498D2DA3-3628-4BD9-B4C7-B83AE7A2DCD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C34018B-2370-4092-9788-DC7EAAD99F5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C34018B-2370-4092-9788-DC7EAAD99F5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C34018B-2370-4092-9788-DC7EAAD99F5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C34018B-2370-4092-9788-DC7EAAD99F5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29634D3A-EBC2-469A-BEAB-D6AFDAAFCFF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29634D3A-EBC2-469A-BEAB-D6AFDAAFCFF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29634D3A-EBC2-469A-BEAB-D6AFDAAFCFF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29634D3A-EBC2-469A-BEAB-D6AFDAAFCFF4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
