@@ -2,6 +2,7 @@ using BC = BCrypt.Net.BCrypt;
 using libGatekeeper.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace libGatekeeper.Services.Authentication;
 
@@ -9,11 +10,13 @@ public class AuthenticationService : IAuthenticationService
 {
     private readonly GatekeeperContext _context;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IConfiguration _configuration;
 
-    public AuthenticationService(GatekeeperContext context, IHttpContextAccessor httpContextAccessor)
+    public AuthenticationService(GatekeeperContext context, IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
     {
         _context = context;
         _httpContextAccessor = httpContextAccessor;
+        _configuration = configuration;
     }
 
     public async Task<AuthenticationServiceTypes.Login.LoginResponse> Login(AuthenticationServiceTypes.Login.LoginRequest request)
@@ -113,12 +116,30 @@ public class AuthenticationService : IAuthenticationService
 
     public async Task<AuthenticationServiceTypes.Register.RegisterResponse> Register(AuthenticationServiceTypes.Register.RegisterRequest request)
     {
+        if (_configuration.GetSection("GatekeeperConfig").GetSection("AllowSelfServiceRegistration").Value == "false")
+        {
+            return new AuthenticationServiceTypes.Register.RegisterResponse
+            {
+                Status = false,
+                Message = "Self service registration is disabled"
+            };
+        }
+
         if (request.GetType().GetProperties().Any(x => x.GetValue(request) == null))
         {
             return new AuthenticationServiceTypes.Register.RegisterResponse
             {
                 Status = false,
                 Message = "All fields are required"
+            };
+        }
+
+        if (request.Password.Length < Convert.ToInt32(_configuration.GetSection("GatekeeperConfig").GetSection("PasswordMinLength").Value))
+        {
+            return new AuthenticationServiceTypes.Register.RegisterResponse
+            {
+                Status = false,
+                Message = $"Password must be at least {_configuration.GetSection("GatekeeperConfig").GetSection("PasswordMinLength").Value} characters"
             };
         }
 
