@@ -44,4 +44,20 @@ public class UserManagementController : Controller
             return BadRequest(res);
         }
     }
+
+    [Authenticate]
+    [HttpPost("api/v1/user")]
+    public async Task<ActionResult<UserManagementServiceTypes.UpdateUser.UpdateUserResponse>> UpdateUser([FromBody] UserManagementServiceTypes.UpdateUser.UpdateUserRequest request)
+    {
+        var res = await _userManagementService.UpdateUser(request);
+
+        if (res.Status)
+        {
+            return Ok(res);
+        }
+        else
+        {
+            return BadRequest(res);
+        }
+    }
 }
