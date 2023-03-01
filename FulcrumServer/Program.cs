@@ -10,8 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<GatekeeperContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("default"), b => b.MigrationsAssembly("libGatekeeper")));
 
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-builder.Services.AddScoped<IUserManagementService, UserManagementService>();
+builder.Services.AddGatekeeper();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
