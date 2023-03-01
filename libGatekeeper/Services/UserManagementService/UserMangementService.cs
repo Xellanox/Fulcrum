@@ -162,7 +162,7 @@ public class UserManagementService : IUserManagementService
         {
             await _context.SaveChangesAsync();
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return new UserManagementServiceTypes.DeleteUser.DeleteUserResponse
             {
@@ -172,7 +172,7 @@ public class UserManagementService : IUserManagementService
         }
 
         _httpContextAccessor.HttpContext.Response.Cookies.Delete("Token");
-        
+
         return new UserManagementServiceTypes.DeleteUser.DeleteUserResponse
         {
             Status = true,
