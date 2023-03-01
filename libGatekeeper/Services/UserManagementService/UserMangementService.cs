@@ -44,7 +44,7 @@ public class UserManagementService : IUserManagementService
         {
             Status = true,
             Message = "Success",
-            User = new UserManagementServiceTypes.FetchCurrentUser.UserDetails
+            User = new UserManagementServiceTypes.UserDetails
             {
                 UserId = findUser.UserId,
                 Username = findUser.Username,
