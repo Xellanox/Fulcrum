@@ -41,4 +41,9 @@ public class UserManagementServiceTypes
 
         public class UpdateUserResponse : BaseResponse {}
     }
+
+    public class DeleteUser
+    {
+        public class DeleteUserResponse : BaseResponse {}
+    }
 }

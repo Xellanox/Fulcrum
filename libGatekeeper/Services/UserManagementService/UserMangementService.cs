@@ -128,4 +128,55 @@ public class UserManagementService : IUserManagementService
             Message = "Successfully updated user"
         };
     }
+
+    public async Task<UserManagementServiceTypes.DeleteUser.DeleteUserResponse> DeleteUser()
+    {
+        var currentToken = _httpContextAccessor.HttpContext.Request.Cookies.FirstOrDefault(x => x.Key == "Token").Value;
+
+        var currentSession = await _context.Sessions.AsNoTracking().FirstOrDefaultAsync(x => x.Token == currentToken && x.Expires > DateTime.UtcNow);
+
+        if (currentSession == null)
+        {
+            return new UserManagementServiceTypes.DeleteUser.DeleteUserResponse
+            {
+                Status = false,
+                Message = "Invalid session"
+            };
+        }
+
+        var findUser = await _context.Users.FirstOrDefaultAsync(x => x.UserId == currentSession.UserId);
+
+        if (findUser == null)
+        {
+            return new UserManagementServiceTypes.DeleteUser.DeleteUserResponse
+            {
+                Status = false,
+                Message = "Invalid user"
+            };
+        }
+
+        _context.Users.Remove(findUser);
+        _context.Sessions.RemoveRange(await _context.Sessions.Where(x => x.UserId == currentSession.UserId).ToListAsync());
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception e)
+        {
+            return new UserManagementServiceTypes.DeleteUser.DeleteUserResponse
+            {
+                Status = false,
+                Message = "Failed to delete user"
+            };
+        }
+
+        _httpContextAccessor.HttpContext.Response.Cookies.Delete("Token");
+        
+        return new UserManagementServiceTypes.DeleteUser.DeleteUserResponse
+        {
+            Status = true,
+            Message = "Successfully deleted user"
+        };
+    }
 }

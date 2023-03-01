@@ -60,4 +60,20 @@ public class UserManagementController : Controller
             return BadRequest(res);
         }
     }
+
+    [Authenticate]
+    [HttpDelete("api/v1/user")]
+    public async Task<ActionResult<UserManagementServiceTypes.DeleteUser.DeleteUserResponse>> DeleteUser()
+    {
+        var res = await _userManagementService.DeleteUser();
+
+        if (res.Status)
+        {
+            return Ok(res);
+        }
+        else
+        {
+            return BadRequest(res);
+        }
+    }
 }
