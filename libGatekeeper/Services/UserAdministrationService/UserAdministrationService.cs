@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace libGatekeeper.Services.UserAdministration;
 
-public class UserAdministrationService : IUserAdministrationService
+internal class UserAdministrationService : IUserAdministrationService
 {
     private readonly GatekeeperContext _context;
 

@@ -9,7 +9,7 @@ using libGatekeeper.Services.UserAdministration;
 using libGatekeeper.Filters;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace libGatekeeper;
 
 public static class GatekeeperServiceGroup
 {

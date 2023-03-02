@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace libGatekeeper.Services.UserManagement;
 
-public class UserManagementService : IUserManagementService
+internal class UserManagementService : IUserManagementService
 {
     private readonly GatekeeperContext _context;
     private readonly IHttpContextAccessor _httpContextAccessor;

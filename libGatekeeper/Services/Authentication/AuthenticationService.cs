@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace libGatekeeper.Services.Authentication;
 
-public class AuthenticationService : IAuthenticationService
+internal class AuthenticationService : IAuthenticationService
 {
     private readonly GatekeeperContext _context;
     private readonly IHttpContextAccessor _httpContextAccessor;
