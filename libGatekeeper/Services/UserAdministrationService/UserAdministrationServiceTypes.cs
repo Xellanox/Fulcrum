@@ -6,7 +6,7 @@ namespace libGatekeeper.Services.UserAdministration;
 
 public class UserAdministrationServiceTypes
 {
-    public class UserDetails
+    public class UserListEntry
     {
         public int UserId {get; set;}
         
@@ -27,7 +27,7 @@ public class UserAdministrationServiceTypes
     {
         public class UserListResponse : BaseResponse
         {
-            public List<UserDetails> Users {get; set;}
+            public List<UserListEntry> Users {get; set;}
         }
     }
 }

@@ -29,7 +29,7 @@ public class UserAdministrationService : IUserAdministrationService
         {
             Status = true,
             Message = "Users found",
-            Users = Users.Select(x => new UserAdministrationServiceTypes.UserDetails
+            Users = Users.Select(x => new UserAdministrationServiceTypes.UserListEntry
             {
                 UserId = x.UserId,
                 Firstname = x.Firstname,
