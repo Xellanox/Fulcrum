@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using libGatekeeper;
 using Microsoft.EntityFrameworkCore;
+using libGatekeeper.Services.UserAdministration;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -14,8 +15,10 @@ public static class GatekeeperServiceGroup
     {
         services.AddDbContext<GatekeeperContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("default"), b => b.MigrationsAssembly("libGatekeeper")));
+        
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddScoped<IUserManagementService, UserManagementService>();
+        services.AddScoped<IUserAdministrationService, UserAdministrationService>();
 
         return services;
     }
