@@ -218,12 +218,12 @@ public class UserManagementService : IUserManagementService
             };
         }
 
-        if (request.NewPassword.Length < _configuration.GetSection("GatekeeperConfig").GetSection("PasswordLength").Get<int>())
+        if (request.NewPassword.Length < _configuration.GetSection("GatekeeperConfig").GetSection("PasswordMinLength").Get<int>())
         {
             return new UserManagementServiceTypes.ChangePassword.ChangePasswordResponse
             {
                 Status = false,
-                Message = $"New password must be at least {_configuration.GetSection("GatekeeperConfig").GetSection("PasswordLength").Get<int>()} characters"
+                Message = $"New password must be at least {_configuration.GetSection("GatekeeperConfig").GetSection("PasswordMinLength").Get<int>()} characters"
             };
         }
 
