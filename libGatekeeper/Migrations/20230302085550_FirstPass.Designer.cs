@@ -12,8 +12,8 @@ using libGatekeeper;
 namespace libGatekeeper.Migrations
 {
     [DbContext(typeof(GatekeeperContext))]
-    [Migration("20230228165649_init")]
-    partial class init
+    [Migration("20230302085550_FirstPass")]
+    partial class FirstPass
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

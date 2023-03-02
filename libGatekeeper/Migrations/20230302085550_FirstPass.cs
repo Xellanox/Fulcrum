@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace libGatekeeper.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class FirstPass : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
