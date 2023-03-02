@@ -76,4 +76,20 @@ public class UserManagementController : Controller
             return BadRequest(res);
         }
     }
+
+    [Authenticate]
+    [HttpPost("api/v1/user/password")]
+    public async Task<ActionResult<UserManagementServiceTypes.ChangePassword.ChangePasswordResponse>> ChangePassword([FromBody] UserManagementServiceTypes.ChangePassword.ChangePasswordRequest request)
+    {
+        var res = await _userManagementService.ChangePassword(request);
+
+        if (res.Status)
+        {
+            return Ok(res);
+        }
+        else
+        {
+            return BadRequest(res);
+        }
+    }
 }

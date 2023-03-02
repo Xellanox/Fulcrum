@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace libGatekeeper.Services.UserManagement;
 
@@ -7,11 +8,13 @@ public class UserManagementService : IUserManagementService
 {
     private readonly GatekeeperContext _context;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IConfiguration _configuration;
 
-    public UserManagementService(GatekeeperContext context, IHttpContextAccessor httpContextAccessor)
+    public UserManagementService(GatekeeperContext context, IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
     {
         _context = context;
         _httpContextAccessor = httpContextAccessor;
+        _configuration = configuration;
     }
 
     public async Task<UserManagementServiceTypes.FetchCurrentUser.FetchCurrentUserResponse>FetchCurrentUser()
@@ -177,6 +180,61 @@ public class UserManagementService : IUserManagementService
         {
             Status = true,
             Message = "Successfully deleted user"
+        };
+    }
+
+    public async Task<UserManagementServiceTypes.ChangePassword.ChangePasswordResponse> ChangePassword(UserManagementServiceTypes.ChangePassword.ChangePasswordRequest request)
+    {
+        var currentToken = _httpContextAccessor.HttpContext.Request.Cookies.FirstOrDefault(x => x.Key == "Token").Value;
+
+        var currentSession = await _context.Sessions.AsNoTracking().FirstOrDefaultAsync(x => x.Token == currentToken && x.Expires > DateTime.UtcNow);
+
+        if (currentSession == null)
+        {
+            return new UserManagementServiceTypes.ChangePassword.ChangePasswordResponse
+            {
+                Status = false,
+                Message = "Invalid session"
+            };
+        }
+
+        var findUser = await _context.Users.FirstOrDefaultAsync(x => x.UserId == currentSession.UserId);
+
+        if (findUser == null)
+        {
+            return new UserManagementServiceTypes.ChangePassword.ChangePasswordResponse
+            {
+                Status = false,
+                Message = "Invalid user"
+            };
+        }
+
+        if (!BCrypt.Net.BCrypt.Verify(request.OldPassword, findUser.Password))
+        {
+            return new UserManagementServiceTypes.ChangePassword.ChangePasswordResponse
+            {
+                Status = false,
+                Message = "Current password is incorrect"
+            };
+        }
+
+        if (request.NewPassword.Length < _configuration.GetSection("GatekeeperConfig").GetSection("PasswordLength").Get<int>())
+        {
+            return new UserManagementServiceTypes.ChangePassword.ChangePasswordResponse
+            {
+                Status = false,
+                Message = $"New password must be at least {_configuration.GetSection("GatekeeperConfig").GetSection("PasswordLength").Get<int>()} characters"
+            };
+        }
+
+        findUser.Password = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
+
+        await _context.SaveChangesAsync();
+
+        return new UserManagementServiceTypes.ChangePassword.ChangePasswordResponse
+        {
+            Status = true,
+            Message = "Successfully changed password"
         };
     }
 }
