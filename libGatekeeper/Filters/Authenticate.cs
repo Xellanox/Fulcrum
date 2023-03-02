@@ -11,7 +11,7 @@ public class Authenticate : ActionFilterAttribute
     {
         var currentToken = context.HttpContext.Request.Cookies.FirstOrDefault(x => x.Key == "Token").Value;
 
-        var db = context.HttpContext.RequestServices.GetService<GatekeeperContext>();
+        using var db = context.HttpContext.RequestServices.GetService<GatekeeperContext>();
 
         if (!db.Sessions.AsNoTracking().Any(x => x.Token == currentToken && x.Expires > DateTime.UtcNow))
         {
