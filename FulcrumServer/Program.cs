@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using libGatekeeper;
 using libGatekeeper.Services.Authentication;
 using libGatekeeper.Services.UserManagement;
+using Microsoft.OpenApi.Writers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+
+app.MigrateGatekeeper();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
