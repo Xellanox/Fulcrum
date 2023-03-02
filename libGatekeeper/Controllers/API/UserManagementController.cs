@@ -13,7 +13,7 @@ public class UserManagementController : Controller
         _userManagementService = userManagementService;
     }
 
-    [Authenticate]
+    [TypeFilter(typeof(Authenticate))]
     [HttpGet("api/v1/user")]
     public async Task<ActionResult<UserManagementServiceTypes.FetchCurrentUser.FetchCurrentUserResponse>> FetchCurrentUser()
     {
@@ -29,7 +29,7 @@ public class UserManagementController : Controller
         }
     }
 
-    [Authenticate]
+    [TypeFilter(typeof(Authenticate))]
     [HttpGet("api/v1/user/id")]
     public async Task<ActionResult<UserManagementServiceTypes.FetchCurrentUserId.FetchCurrentUserIdResponse>> FetchCurrentUserId()
     {
@@ -45,7 +45,7 @@ public class UserManagementController : Controller
         }
     }
 
-    [Authenticate]
+    [TypeFilter(typeof(Authenticate))]
     [HttpPost("api/v1/user")]
     public async Task<ActionResult<UserManagementServiceTypes.UpdateUser.UpdateUserResponse>> UpdateUser([FromBody] UserManagementServiceTypes.UpdateUser.UpdateUserRequest request)
     {
@@ -61,7 +61,7 @@ public class UserManagementController : Controller
         }
     }
 
-    [Authenticate]
+    [TypeFilter(typeof(Authenticate))]
     [HttpDelete("api/v1/user")]
     public async Task<ActionResult<UserManagementServiceTypes.DeleteUser.DeleteUserResponse>> DeleteUser()
     {
@@ -77,7 +77,7 @@ public class UserManagementController : Controller
         }
     }
 
-    [Authenticate]
+    [TypeFilter(typeof(Authenticate))]
     [HttpPost("api/v1/user/password")]
     public async Task<ActionResult<UserManagementServiceTypes.ChangePassword.ChangePasswordResponse>> ChangePassword([FromBody] UserManagementServiceTypes.ChangePassword.ChangePasswordRequest request)
     {

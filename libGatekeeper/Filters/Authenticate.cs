@@ -7,13 +7,19 @@ namespace libGatekeeper.Filters;
 
 public class Authenticate : ActionFilterAttribute
 {
+    private readonly GatekeeperContext _context;
+
+    public Authenticate(GatekeeperContext context)
+    {
+        _context = context;
+    }
+
     public override void OnActionExecuting(ActionExecutingContext context)
     {
         var currentToken = context.HttpContext.Request.Cookies.FirstOrDefault(x => x.Key == "Token").Value;
 
-        using var db = context.HttpContext.RequestServices.GetService<GatekeeperContext>();
 
-        if (!db.Sessions.AsNoTracking().Any(x => x.Token == currentToken && x.Expires > DateTime.UtcNow))
+        if (!_context.Sessions.AsNoTracking().Any(x => x.Token == currentToken && x.Expires > DateTime.UtcNow))
         {
             context.Result = new StatusCodeResult(401);
         }

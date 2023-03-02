@@ -14,7 +14,7 @@ public class UserAdministrationController : Controller
     }
 
     [HttpGet]
-    [Administrative]
+    [TypeFilter(typeof(Administrative))]
     [Route("api/user/list")]
     public async Task<UserAdministrationServiceTypes.UserList.UserListResponse> GetUserList()
     {

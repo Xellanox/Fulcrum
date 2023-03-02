@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using libGatekeeper;
 using Microsoft.EntityFrameworkCore;
 using libGatekeeper.Services.UserAdministration;
+using libGatekeeper.Filters;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -19,6 +21,8 @@ public static class GatekeeperServiceGroup
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddScoped<IUserManagementService, UserManagementService>();
         services.AddScoped<IUserAdministrationService, UserAdministrationService>();
+        services.AddScoped<ActionFilterAttribute, Administrative>();
+        services.AddScoped<ActionFilterAttribute, Authenticate>();
 
         return services;
     }
