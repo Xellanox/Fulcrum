@@ -34,6 +34,15 @@ internal class AuthenticationService : IAuthenticationService
             };
         }
 
+        if (!findUser.IsEnabled)
+        {
+            return new AuthenticationServiceTypes.Login.LoginResponse
+            {
+                Status = false,
+                Message = "User is disabled"
+            };
+        }
+
         if (!BC.Verify(request.Password, findUser.Password))
         {
             return new AuthenticationServiceTypes.Login.LoginResponse

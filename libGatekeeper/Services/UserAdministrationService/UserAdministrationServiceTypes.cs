@@ -1,7 +1,3 @@
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using Microsoft.Identity.Client;
-
 namespace libGatekeeper.Services.UserAdministration;
 
 public class UserAdministrationServiceTypes
@@ -29,5 +25,45 @@ public class UserAdministrationServiceTypes
         {
             public List<UserListEntry> Users {get; set;}
         }
+    }
+
+    public class BanUser
+    {
+        public class BanUserRequest
+        {
+            public int UserId {get; set;}
+        }
+
+        public class BanUserResponse : BaseResponse {}
+    }
+
+    public class UnbanUser
+    {
+        public class UnbanUserRequest
+        {
+            public int UserId {get; set;}
+        }
+
+        public class UnbanUserResponse : BaseResponse {}
+    }
+
+    public class PromoteUser
+    {
+        public class PromoteUserRequest
+        {
+            public int UserId {get; set;}
+        }
+
+        public class PromoteUserResponse : BaseResponse {}
+    }
+
+    public class DemoteUser
+    {
+        public class DemoteUserRequest
+        {
+            public int UserId {get; set;}
+        }
+
+        public class DemoteUserResponse : BaseResponse {}
     }
 }
