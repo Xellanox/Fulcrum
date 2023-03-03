@@ -19,6 +19,10 @@
     <PackageReference Include="microsoft.entityframeworkcore.sqlserver" Version="7.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\libGatekeeper\libGatekeeper.csproj" />
+  </ItemGroup>
+
 
 
 </Project>
