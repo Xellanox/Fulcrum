@@ -16,7 +16,7 @@ public static class GatekeeperServiceGroup
     public static IServiceCollection AddGatekeeper(this IServiceCollection services, IConfiguration Configuration)
     {
         services.AddDbContext<GatekeeperContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("default"), b => b.MigrationsAssembly("libGatekeeper")));
+            options.UseSqlServer(Configuration.GetConnectionString("GatekeeperDB"), b => b.MigrationsAssembly("libGatekeeper")));
         
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddScoped<IUserManagementService, UserManagementService>();

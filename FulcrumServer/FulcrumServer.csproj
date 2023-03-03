@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\libGatekeeper\libGatekeeper.csproj" />
+    <ProjectReference Include="..\libFulcrum\libFulcrum.csproj" />
   </ItemGroup>
 
 </Project>
