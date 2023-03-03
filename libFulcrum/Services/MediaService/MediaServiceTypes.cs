@@ -25,4 +25,16 @@ public class MediaServiceTypes
             public List<Mediafile> Media { get; set; }
         }
     }
+
+    public class FetchMediaStream
+    {
+        public class FetchMediaStreamRequest
+        {
+            public int MediafileId { get; set; }
+        }
+
+        public class FetchMediaStreamResponse : BaseResponse {
+            public String MediafilePath {get; set;}
+        }
+    }
 }

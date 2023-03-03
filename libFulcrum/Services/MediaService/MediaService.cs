@@ -55,4 +55,28 @@ internal class MediaService : IMediaService
 
         return response;
     }
+
+    public async Task<MediaServiceTypes.FetchMediaStream.FetchMediaStreamResponse> FetchMediaStream(MediaServiceTypes.FetchMediaStream.FetchMediaStreamRequest request)
+    {
+        var media = await _context.Mediafiles
+            .AsNoTracking()
+            .Where(m => m.MediafileId == request.MediafileId)
+            .FirstOrDefaultAsync();
+
+        if (media == null)
+        {
+            return new MediaServiceTypes.FetchMediaStream.FetchMediaStreamResponse
+            {
+                Status = false,
+                Message = "Failed to fetch media stream."
+            };
+        }
+
+        return new MediaServiceTypes.FetchMediaStream.FetchMediaStreamResponse
+        {
+            Status = true,
+            Message = "Successfully fetched media stream.",
+            MediafilePath = media.Path
+        };
+    }
 }
