@@ -7,9 +7,16 @@ public static class FulcrumServices
 {
     public static IServiceCollection AddFulcrum(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<FulcrumContext>(x => 
-            x.UseSqlServer(Environment.GetEnvironmentVariable("FULCRUM_DB"))
-        );
+        if (Environment.GetEnvironmentVariable("FULCRUM_DB") != null)
+        {
+            services.AddDbContext<FulcrumContext>(x => 
+                x.UseSqlServer(Environment.GetEnvironmentVariable("FULCRUM_DB")));
+        }
+        else
+        {
+            services.AddDbContext<FulcrumContext>(x => 
+                x.UseSqlServer(configuration.GetConnectionString("default")));
+        }
 
         services.AddScoped<IAuthentication, AuthenticationService>();
 

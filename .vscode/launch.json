@@ -20,7 +20,8 @@
                 "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "FULCRUM_DB" : "user id=developer; password=password123; server=192.168.0.50; database=FDevelopment; Trust Server Certificate=true"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
