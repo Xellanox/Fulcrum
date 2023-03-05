@@ -1,6 +1,6 @@
 using Fulcrum.Filters;
 using Fulcrum.Services.CurrentUser;
-using Fulcrum.Services.UserManagement.Types;
+using Fulcrum.Services.CurrentUser.Types;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fulcrum.Controllers.API;

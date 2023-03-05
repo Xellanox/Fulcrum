@@ -1,4 +1,4 @@
-using Fulcrum.Services.UserManagement.Types;
+using Fulcrum.Services.CurrentUser.Types;
 
 namespace Fulcrum.Services.CurrentUser;
 

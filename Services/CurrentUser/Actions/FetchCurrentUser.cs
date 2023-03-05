@@ -1,5 +1,4 @@
-using System.Reflection.Metadata.Ecma335;
-using Fulcrum.Services.UserManagement.Types;
+using Fulcrum.Services.CurrentUser.Types;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fulcrum.Services.CurrentUser;

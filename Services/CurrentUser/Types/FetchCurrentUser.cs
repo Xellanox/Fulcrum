@@ -1,6 +1,6 @@
 using Fulcrum.Models;
 
-namespace Fulcrum.Services.UserManagement.Types;
+namespace Fulcrum.Services.CurrentUser.Types;
 
 public class FetchCurrentUser
 {
