@@ -8,4 +8,5 @@ public interface IUserManagement
     Task<DeleteUser.DeleteUserResponse> DeleteUser(DeleteUser.DeleteUserRequest request);
     Task<FetchUser.FetchUserResponse> FetchUser(FetchUser.FetchUserRequest request);
     Task<UpdateUser.UpdateUserResponse> UpdateUser(UpdateUser.UpdateUserRequest request);
+    Task<ListUser.ListUserResponse> ListUser(ListUser.ListUserRequest request);
 }

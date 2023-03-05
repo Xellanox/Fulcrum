@@ -28,4 +28,8 @@ public class UserManagementController : Controller
     [HttpPatch]
     [Route("/api/user")]
     public async Task<ActionResult<UpdateUser.UpdateUserResponse>> UpdateUser([FromBody] UpdateUser.UpdateUserRequest req) => await _userManagement.UpdateUser(req);
+
+    [HttpGet]
+    [Route("/api/user/list")]
+    public async Task<ActionResult<ListUser.ListUserResponse>> ListUser([FromBody] ListUser.ListUserRequest req) => await _userManagement.ListUser(req);
 }
