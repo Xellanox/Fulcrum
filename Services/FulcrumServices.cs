@@ -4,6 +4,7 @@ using Fulcrum.Services.UserManagement;
 using Microsoft.EntityFrameworkCore;
 using Fulcrum.Filters;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Fulcrum.Services.CurrentConfig;
 
 namespace Fulcrum.Services;
 
@@ -25,6 +26,8 @@ public static class FulcrumServices
         services.AddScoped<IAuthentication, AuthenticationService>();
         services.AddScoped<IUserManagement, UserManagementService>();
         services.AddScoped<ICurrentUser, CurrentUserService>();
+        services.AddScoped<ICurrentConfig, CurrentConfigService>();
+
         services.AddScoped<ActionFilterAttribute, Administrative>();
         services.AddScoped<ActionFilterAttribute, Authenticate>();
 
