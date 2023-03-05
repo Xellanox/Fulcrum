@@ -28,6 +28,13 @@ public class CurrentUserController : Controller
 
     [HttpPatch]
     [TypeFilter(typeof(Authenticate))]
+    [Route("/api/current")]
     public async Task<ActionResult<UpdateCurrentUser.UpdateCurrentUserResponse>> UpdateCurrentUser([FromBody] UpdateCurrentUser.UpdateCurrentUserRequest req)
         => await _currentUser.UpdateCurrentUser(req);
+
+    [HttpDelete]
+    [TypeFilter(typeof(Authenticate))]
+    [Route("/api/current")]
+    public async Task<ActionResult<DeleteCurrentUser.DeleteCurrentUserResponse>> DeleteCurrentUser()
+        => await _currentUser.DeleteCurrentUser();
 }
