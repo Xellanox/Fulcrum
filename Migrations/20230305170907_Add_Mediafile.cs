@@ -6,11 +6,39 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Fulcrum.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigration : Migration
+    public partial class Add_Mediafile : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Mediafiles",
+                columns: table => new
+                {
+                    MediafileId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Artist = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AlbumArtist = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Album = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Year = table.Column<int>(type: "int", nullable: false),
+                    TrackNumber = table.Column<int>(type: "int", nullable: false),
+                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Filename = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Codec = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Bitrate = table.Column<int>(type: "int", nullable: false),
+                    Samplerate = table.Column<int>(type: "int", nullable: false),
+                    AddedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastPlayed = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PlayCount = table.Column<int>(type: "int", nullable: false),
+                    ImportedByUserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Mediafiles", x => x.MediafileId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
@@ -65,6 +93,9 @@ namespace Fulcrum.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Mediafiles");
+
             migrationBuilder.DropTable(
                 name: "Sessions");
 

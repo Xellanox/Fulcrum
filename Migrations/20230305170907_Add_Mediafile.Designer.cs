@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fulcrum.Migrations
 {
     [DbContext(typeof(FulcrumContext))]
-    [Migration("20230304224443_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20230305170907_Add_Mediafile")]
+    partial class Add_Mediafile
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,67 @@ namespace Fulcrum.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Fulcrum.Models.Mediafile", b =>
+                {
+                    b.Property<int>("MediafileId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MediafileId"));
+
+                    b.Property<DateTime?>("AddedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Album")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AlbumArtist")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Artist")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Bitrate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Codec")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Filename")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ImportedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastPlayed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PlayCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Samplerate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TrackNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("MediafileId");
+
+                    b.ToTable("Mediafiles");
+                });
 
             modelBuilder.Entity("Fulcrum.Models.Session", b =>
                 {
