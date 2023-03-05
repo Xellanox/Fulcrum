@@ -2,7 +2,7 @@ namespace Fulcrum.Services.UserManagement.Types;
 
 public class UpdateUser
 {
-    public class UserDetail
+    public class UserUpdated
     {
         public int UserId {get; set;}
         public string Firstname {get; set;}
@@ -15,7 +15,7 @@ public class UpdateUser
 
     public class UpdateUserRequest
     {
-        public UserDetail UpdatedDetails {get; set;}
+        public UserUpdated UpdatedDetails {get; set;}
     }
 
     public class UpdateUserResponse : BaseResponse {}
