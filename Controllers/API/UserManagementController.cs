@@ -13,11 +13,15 @@ public class UserManagementController : Controller
         _userManagement = userManagement;
     }
 
-    [HttpPost]
+    [HttpPut]
     [Route("/api/user")]
     public async Task<ActionResult<AddUser.AddUserResponse>> AddUser([FromBody] AddUser.AddUserRequest req) => await _userManagement.AddUser(req);
 
     [HttpDelete]
     [Route("/api/user")]
     public async Task<ActionResult<DeleteUser.DeleteUserResponse>> DeleteUser([FromBody] DeleteUser.DeleteUserRequest req) => await _userManagement.DeleteUser(req);
+
+    [HttpGet]
+    [Route("/api/user")]
+    public async Task<ActionResult<FetchUser.FetchUserResponse>> FetchUser([FromBody] FetchUser.FetchUserRequest req) => await _userManagement.FetchUser(req);
 }
