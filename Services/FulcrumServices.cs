@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Fulcrum.Filters;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Fulcrum.Services.CurrentConfig;
+using Fulcrum.Services.Media;
 
 namespace Fulcrum.Services;
 
@@ -27,6 +28,7 @@ public static class FulcrumServices
         services.AddScoped<IUserManagement, UserManagementService>();
         services.AddScoped<ICurrentUser, CurrentUserService>();
         services.AddScoped<ICurrentConfig, CurrentConfigService>();
+        services.AddScoped<IMedia, MediaService>();
 
         services.AddScoped<ActionFilterAttribute, Administrative>();
         services.AddScoped<ActionFilterAttribute, Authenticate>();
