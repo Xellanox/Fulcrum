@@ -1,4 +1,5 @@
 using Fulcrum.Services.Authentication;
+using Fulcrum.Services.UserManagement;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fulcrum.Services;
@@ -19,6 +20,7 @@ public static class FulcrumServices
         }
 
         services.AddScoped<IAuthentication, AuthenticationService>();
+        services.AddScoped<IUserManagement, UserManagementService>();
 
         return services;
     }
