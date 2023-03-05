@@ -19,4 +19,10 @@ public class CurrentConfigController : Controller
     [Route("/api/config")]
     public async Task<ActionResult<FetchConfig.FetchConfigResponse>> FetchConfig()
         => await _currentConfig.FetchConfig();
+
+    [HttpPatch]
+    [TypeFilter(typeof(Administrative))]
+    [Route("/api/config")]
+    public async Task<ActionResult<WriteConfig.WriteConfigResponse>> WriteConfig([FromBody] WriteConfig.WriteConfigRequest req)
+        => await _currentConfig.WriteConfig(req);
 }
