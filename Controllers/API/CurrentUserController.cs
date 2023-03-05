@@ -25,4 +25,9 @@ public class CurrentUserController : Controller
     [Route("/api/current/password")]
     public async Task<ActionResult<ChangePassword.ChangePasswordResponse>> ChangeCurentPassword([FromBody] ChangePassword.ChangePasswordRequest req)
         => await _currentUser.ChangePassword(req);
+
+    [HttpPatch]
+    [TypeFilter(typeof(Authenticate))]
+    public async Task<ActionResult<UpdateCurrentUser.UpdateCurrentUserResponse>> UpdateCurrentUser([FromBody] UpdateCurrentUser.UpdateCurrentUserRequest req)
+        => await _currentUser.UpdateCurrentUser(req);
 }
