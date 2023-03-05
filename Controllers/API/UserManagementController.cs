@@ -24,4 +24,8 @@ public class UserManagementController : Controller
     [HttpGet]
     [Route("/api/user")]
     public async Task<ActionResult<FetchUser.FetchUserResponse>> FetchUser([FromBody] FetchUser.FetchUserRequest req) => await _userManagement.FetchUser(req);
+
+    [HttpPatch]
+    [Route("/api/user")]
+    public async Task<ActionResult<UpdateUser.UpdateUserResponse>> UpdateUser([FromBody] UpdateUser.UpdateUserRequest req) => await _userManagement.UpdateUser(req);
 }
