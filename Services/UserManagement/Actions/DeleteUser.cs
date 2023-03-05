@@ -7,6 +7,8 @@ internal partial class UserManagementService : IUserManagement
 {
     public async Task<DeleteUser.DeleteUserResponse> DeleteUser(DeleteUser.DeleteUserRequest req)
     {
+        var currentUser = await _currentUser.FetchCurrentUser();
+
         var findUser = await _context.Users
             .FirstOrDefaultAsync(x => x.UserId == req.UserId);
 
@@ -33,6 +35,11 @@ internal partial class UserManagementService : IUserManagement
                 Message = "Error occured while deleting user",
                 Status = false
             };
+        }
+
+        if (req.UserId == currentUser.Details.UserId)
+        {
+            _httpContextAccessor.HttpContext.Response.Cookies.Delete("Token");
         }
 
         return new DeleteUser.DeleteUserResponse
