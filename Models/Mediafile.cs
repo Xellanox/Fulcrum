@@ -19,6 +19,10 @@ public class Mediafile
 
     public string FilePath {get; set;}
     public string Filename {get; set;}
+
+    public string ArtPath {get; set;}
+    public string ArtFilename {get; set;}
+    
     public string MimeType {get; set;}
 
     public string Codec {get; set;}
