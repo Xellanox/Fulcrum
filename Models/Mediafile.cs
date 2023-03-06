@@ -16,6 +16,7 @@ public class Mediafile
 
     public int Year {get; set;}
     public int TrackNumber {get; set;}
+    public int DiscNumber { get; set; }
 
     public string FilePath {get; set;}
     public string Filename {get; set;}
@@ -35,4 +36,6 @@ public class Mediafile
     public int PlayCount {get; set;}
 
     public int ImportedByUserId {get; set;}
+
+    public DateTime LastModified { get; set; }
 }

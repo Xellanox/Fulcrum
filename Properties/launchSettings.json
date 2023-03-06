@@ -1,15 +1,26 @@
-﻿{
-  "$schema": "https://json.schemastore.org/launchsettings.json",
+{
   "profiles": {
     "Fulcrum": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7067;http://localhost:5070",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "FULCRUM_DB": "user id=developer; password=password123; server=192.168.0.50; database=FDevelopment; Trust Server Certificate=true"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7067;http://localhost:5070"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "FULCRUM_DB": "user id=developer; password=password123; server=192.168.0.50; database=FDevelopment; Trust Server Certificate=true"
+      },
+      "publishAllPorts": true,
+      "useSSL": true
     }
-  }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json"
 }

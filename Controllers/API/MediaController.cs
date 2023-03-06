@@ -59,5 +59,15 @@ public class MediaController : Controller
     [TypeFilter(typeof(Authenticate))]
     [Route("/api/media")]
     public async Task<ActionResult<FetchMedia.FetchMediaResponse>> FetchMedia([FromBody] FetchMedia.FetchMediaRequest req)
-        => await _media.FetchMedia(req);
+    {
+        return await _media.FetchMedia(req);
+    }
+
+    [HttpPatch]
+    [TypeFilter(typeof(Administrative))]
+    [Route("/api/media")]
+    public async Task<ActionResult<UpdateMedia.UpdateMediaResponse>> UpdateMedia([FromBody] UpdateMedia.UpdateMediaRequest req)
+    {
+        return await _media.UpdateMedia(req);
+    }
 }
