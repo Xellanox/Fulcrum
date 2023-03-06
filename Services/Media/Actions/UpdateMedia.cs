@@ -7,6 +7,17 @@ internal partial class MediaService : IMedia
 {
     public async Task<UpdateMedia.UpdateMediaResponse> UpdateMedia(UpdateMedia.UpdateMediaRequest request)
     {
+        if(request.GetType().GetProperties().Where(x => x.PropertyType.Name == "String").Any(x => x.GetValue(request).ToString() == "")
+            || request.GetType().GetProperties().Where(x => x.PropertyType.Name.Contains("Int")).Any(x => x.GetValue(request).ToString() == "0"))
+        {
+            return new UpdateMedia.UpdateMediaResponse
+            {
+                Message = "All fields must be provided",
+                Status = false
+            };
+        }
+
+
         var target = await _context.Mediafiles
             .FirstOrDefaultAsync(x => x.MediafileId == request.Id);
 
